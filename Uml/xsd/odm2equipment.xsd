@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:odm2="uri:odm2" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import namespace="uri:odm2" schemaLocation="odm2core.xsd"/>
 	<xs:include schemaLocation="odm2samplingfeatures.xsd"/>
-	<xs:include schemaLocation="odm2core.xsd"/>
 	<xs:element name="CalibrationAction_Standards" type="CalibrationAction_Standards"/>
 	<xs:complexType name="CalibrationAction_Standards">
 		<xs:annotation>
@@ -23,7 +23,7 @@
 			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="Actions" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="odm2:Actions" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="ConfigurationActions" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 		<xs:attribute name="calibrationactionid" use="optional" type="xs:int"/>
@@ -59,7 +59,7 @@
 			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="Organizations" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="odm2:Organizations" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="Specimens" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 		<xs:attribute name="calibrationstandardid" use="optional" type="xs:int"/>
@@ -91,8 +91,8 @@
 					<xs:documentation>Foreign key identifier for the Variable that describes the Calibration Standard Value</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="Units" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="Variables" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="odm2:Units" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="odm2:Variables" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="CalibrationStandards" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 		<xs:attribute name="calibrationstandardvalueid" use="optional" type="xs:int">
@@ -117,7 +117,7 @@
 					<xs:documentation>File path to a file containing information about the configuration</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="Actions" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="odm2:Actions" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 		<xs:attribute name="configurationactionid" use="optional" type="xs:int">
 			<xs:annotation>
@@ -133,76 +133,76 @@
 		<xs:complexContent>
 			<xs:extension base="EquipmentModels">
 				<xs:sequence>
-					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+					<xs:element name="equipmentcode" type="xs:string" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>A text code that identifies the piece of equipment</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+					<xs:element name="equipmentinventorynumber" type="xs:string" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Owner's inventory number for the specific piece of equipment</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+					<xs:element name="equipmentname" type="xs:string" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>A text name for the piece of equipment</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+					<xs:element name="equipmentnotes" type="xs:string" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Text notes about the specific piece of equipment</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+					<xs:element name="equipmentownerid" type="xs:int" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Foreign key identifer for the person that owns the piece of equipment</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+					<xs:element name="equipmentphotofilename" type="xs:string" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>A file name, path, or URL to a photo of the specific piece of equipment</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="datetime" minOccurs="1" maxOccurs="1">
+					<xs:element name="equipmentpurchasedate" type="xs:dateTime" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Date that the piece of equipment was purchased</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+					<xs:element name="equipmentpurchaseordernumber" type="xs:string" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>A text string identifying the purchase order used to purchase the piece of equipment</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+					<xs:element name="equipmentserialnumber" type="xs:string" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Manufacturer's serial number for the specific piece of equipment</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+					<xs:element name="equipmenttypecv" type="xs:string" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>CV term describing the equipment type (e.g., sensor, datalogger, solar panel, etc.)</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+					<xs:element name="equipmentvendorid" type="xs:int" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Foreign key identifier for the vendor organization for the piece of equipment</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+					<xs:element name="modelid" type="xs:int" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Foreign key identifier for the model of the equipment</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+					<xs:element name="parentequipmentid" type="xs:int" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Unique identifier for the piece of equipment that is the parent of the current piece of equipment</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="Organizations" minOccurs="1" maxOccurs="1"/>
-					<xs:element ref="People" minOccurs="1" maxOccurs="1"/>
+					<xs:element ref="odm2:Organizations" minOccurs="1" maxOccurs="1"/>
+					<xs:element ref="odm2:People" minOccurs="1" maxOccurs="1"/>
 					<xs:element ref="Equipment" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
-				<xs:attribute name="equipmentid" use="optional" type="xs:int">
+				<xs:attribute name="equipmentid" use="required" type="xs:int">
 					<xs:annotation>
 						<xs:documentation>Unique identifier</xs:documentation>
 					</xs:annotation>
@@ -216,53 +216,53 @@
 			<xs:documentation>Describes models of sensors, loggers, and related equipment used in making observations.</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element ref="boolean" minOccurs="1" maxOccurs="1">
+			<xs:element name="isinstrument" type="xs:boolean" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>A boolean indication of whether the equipment is a sensor/instrument used to make observations</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="modeldescription" type="xs:string" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Text description of the equipment model</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Unique identifier</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="modellink" type="xs:string" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>A URL to a website having a description of the equipment model</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+			<xs:element name="modelmanufacturerid" type="xs:int" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Foreign key identifier of the model manufacturer</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="modelname" type="xs:string" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Text name of the equipment model</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="modelnotes" type="xs:string" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Text notes that go with the equipment model</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="modelpartnumber" type="xs:string" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>A part number for the equipment model</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="modelspecificationsfile" type="xs:string" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>File name, path, or URL to a specifications file for the equipment</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="Organizations" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="odm2:Organizations" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
+		<xs:attribute name="modelid" use="required" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	<xs:element name="InstrumentOutputVariables" type="InstrumentOutputVariables"/>
 	<xs:complexType name="InstrumentOutputVariables">
@@ -290,8 +290,8 @@
 					<xs:documentation>Foreign key identifier to the variable that is the instrument output variable</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="Units" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="Variables" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="odm2:Units" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="odm2:Variables" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="ConfigurationActions" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 		<xs:attribute name="instrumentoutputvariableid" use="optional" type="xs:int">
@@ -321,7 +321,7 @@
 					<xs:documentation>A boolean indicator of whether the maintenance action is a factory service</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="Actions" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="odm2:Actions" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 		<xs:attribute name="maintenanceactionid" use="optional" type="xs:int">
 			<xs:annotation>

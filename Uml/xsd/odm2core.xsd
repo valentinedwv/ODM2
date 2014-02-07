@@ -2,8 +2,8 @@
 <xs:schema targetNamespace="uri:odm2" xmlns="uri:odm2"
 	xmlns:odm2="uri:odm2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml">
 	
-	<xs:import namespace="" schemaLocation="odm2samplingfeatures.xsd"/>
-	<xs:import namespace="" schemaLocation="odm2equipment.xsd"/>
+	<xs:include schemaLocation="odm2samplingfeatures.xsd"/>
+	<xs:include  schemaLocation="odm2equipment.xsd"/>
 	<xs:element name="ActionPeople" type="ActionPeople"/>
 	<xs:complexType name="ActionPeople">
 		<xs:annotation>

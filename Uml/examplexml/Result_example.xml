@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Results xmlns="uri:odm2"
+ xmlns:gml="http://www.opengis.net/gml"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="uri:odm2 file:/F:/dev_odm2/ODM2/Uml/xsd/odm2core.xsd" resultid="0">
+    <resulttypecv>resulttypecv0</resulttypecv>
+    <actionid>0</actionid>
+    <variableid>0</variableid>
+    <unitsid>0</unitsid>
+    <qualitycontrollevelid>0</qualitycontrollevelid>
+    <resultdatetime>2006-05-04T18:13:51.0Z</resultdatetime>
+    <resultdatetimeutcoffset>0</resultdatetimeutcoffset>
+    <validdatetime>2006-05-04T18:13:51.0Z</validdatetime>
+    <validdatetimeutcoffset>0</validdatetimeutcoffset>
+    <statuscv>statuscv0</statuscv>
+    <sampledmediumcv>sampledmediumcv0</sampledmediumcv>
+    <valuecount>0</valuecount>
+    <intendedobservationspacing>P1Y2M3DT1H10M0S</intendedobservationspacing>
+    <Actions actionid="0">
+        <actiontypecv>actiontypecv0</actiontypecv>
+        <begindatetime>2006-05-04T18:13:51.0Z</begindatetime>
+        <begindatetimeutcoffset>0</begindatetimeutcoffset>
+        <enddatetime>2006-05-04T18:13:51.0Z</enddatetime>
+        <enddatetimeutcoffset>0</enddatetimeutcoffset>
+        <methodid>0</methodid>
+        <samplingfeatureid>0</samplingfeatureid>
+        <equipmentid>0</equipmentid>
+        <directiveid>0</directiveid>
+        <actionnotes>actionnotes0</actionnotes>
+        <parentactionid>0</parentactionid>
+        <Actions actionid="0"/>
+        <Directives directiveid="0">
+            <directivedescription xmlns="">directivedescription0</directivedescription>
+        </Directives>
+        <Methods methodid="0">
+            <methodtypecv>methodtypecv0</methodtypecv>
+            <methodcode xmlns="">methodcode0</methodcode>
+            <methodname>methodname0</methodname>
+            <methoddescription>methoddescription0</methoddescription>
+            <methodlink>methodlink0</methodlink>
+            <organizationid>0</organizationid>
+            <Organizations organizationid="0">
+                <organizationtypecv xmlns="">organizationtypecv0</organizationtypecv>
+                <organizationcode xmlns="">organizationcode0</organizationcode>
+                <organizationname xmlns="">organizationname0</organizationname>
+                <organizationdescription xmlns="">organizationdescription0</organizationdescription>
+                <organizationlink xmlns="">organizationlink0</organizationlink>
+                <parentorganizationid xmlns="">0</parentorganizationid>
+                <Organizations organizationid="0"/>
+            </Organizations>
+        </Methods>
+        <SamplingFeatures samplingfeatureid="0">
+            <samplingfeaturetypecv xmlns="">samplingfeaturetypecv0</samplingfeaturetypecv>
+            <spatialreferenceid xmlns="">0</spatialreferenceid>
+            <SpatialReferences xmlns:odm2="uri:odm2" odm2:spatialreferenceid="0">
+                <notes>notes0</notes>
+                <srsid>0</srsid>
+                <srsname>srsname0</srsname>
+            </SpatialReferences>
+        </SamplingFeatures>
+        <Equipment equipmentid="0" modelid="0">
+            <isinstrument xmlns="">false</isinstrument>
+            <modeldescription xmlns="">modeldescription0</modeldescription>
+            <modellink xmlns="">modellink0</modellink>
+            <modelmanufacturerid xmlns="">0</modelmanufacturerid>
+            <modelname xmlns="">modelname0</modelname>
+            <modelnotes xmlns="">modelnotes0</modelnotes>
+            <modelpartnumber xmlns="">modelpartnumber0</modelpartnumber>
+            <modelspecificationsfile xmlns="">modelspecificationsfile0</modelspecificationsfile>
+            <Organizations organizationid="0">
+                <organizationtypecv xmlns="">organizationtypecv1</organizationtypecv>
+                <organizationcode xmlns="">organizationcode1</organizationcode>
+                <organizationname xmlns="">organizationname1</organizationname>
+                <organizationdescription xmlns="">organizationdescription1</organizationdescription>
+                <organizationlink xmlns="">organizationlink1</organizationlink>
+                <parentorganizationid xmlns="">0</parentorganizationid>
+                <Organizations organizationid="0"/>
+            </Organizations>
+            <equipmentcode xmlns="">equipmentcode0</equipmentcode>
+            <equipmentinventorynumber xmlns="">equipmentinventorynumber0</equipmentinventorynumber>
+            <equipmentname xmlns="">equipmentname0</equipmentname>
+            <equipmentnotes xmlns="">equipmentnotes0</equipmentnotes>
+            <equipmentownerid xmlns="">0</equipmentownerid>
+            <equipmentphotofilename xmlns="">equipmentphotofilename0</equipmentphotofilename>
+            <equipmentpurchasedate xmlns="">2006-05-04T18:13:51.0Z</equipmentpurchasedate>
+            <equipmentpurchaseordernumber xmlns="">equipmentpurchaseordernumber0</equipmentpurchaseordernumber>
+            <equipmentserialnumber xmlns="">equipmentserialnumber0</equipmentserialnumber>
+            <equipmenttypecv xmlns="">equipmenttypecv0</equipmenttypecv>
+            <equipmentvendorid xmlns="">0</equipmentvendorid>
+            <modelid xmlns="">0</modelid>
+            <parentequipmentid xmlns="">0</parentequipmentid>
+            <Organizations organizationid="0">
+                <organizationtypecv xmlns="">organizationtypecv2</organizationtypecv>
+                <organizationcode xmlns="">organizationcode2</organizationcode>
+                <organizationname xmlns="">organizationname2</organizationname>
+                <organizationdescription xmlns="">organizationdescription2</organizationdescription>
+                <organizationlink xmlns="">organizationlink2</organizationlink>
+                <parentorganizationid xmlns="">0</parentorganizationid>
+                <Organizations organizationid="0"/>
+            </Organizations>
+            <People>
+                <personfirstname>personfirstname0</personfirstname>
+                <personmiddlename>personmiddlename0</personmiddlename>
+                <personlastname>personlastname0</personlastname>
+            </People>
+            <Equipment equipmentid="0" modelid="0"/>
+        </Equipment>
+    </Actions>
+    <QualityControlLevels>
+        <definition xmlns="">definition0</definition>
+        <explanation xmlns="">explanation0</explanation>
+        <qualitycontrollevelcode xmlns="">qualitycontrollevelcode0</qualitycontrollevelcode>
+    </QualityControlLevels>
+    <Units>
+        <unitsabbreviation xmlns="">unitsabbreviation0</unitsabbreviation>
+        <unitsname xmlns="">unitsname0</unitsname>
+        <unitstypecv xmlns="">unitstypecv0</unitstypecv>
+    </Units>
+    <Variables xmlns:odm2="uri:odm2" odm2:variableid="0">
+        <datatypecv>datatypecv0</datatypecv>
+        <nodatavalue>0</nodatavalue>
+        <speciationcv>speciationcv0</speciationcv>
+        <valuetypecv>valuetypecv0</valuetypecv>
+        <variablecode>variablecode0</variablecode>
+        <variabledefinition>variabledefinition0</variabledefinition>
+        <variablenamecv>variablenamecv0</variablenamecv>
+        <variabletypecv>variabletypecv0</variabletypecv>
+    </Variables>
+</Results>
