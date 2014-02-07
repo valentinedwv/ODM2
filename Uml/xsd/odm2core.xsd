@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="uri:odm2" xmlns="uri:odm2"
+	xmlns:odm2="uri:odm2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml">
+	
+	<xs:import namespace="" schemaLocation="odm2samplingfeatures.xsd"/>
+	<xs:import namespace="" schemaLocation="odm2equipment.xsd"/>
+	<xs:element name="ActionPeople" type="ActionPeople"/>
+	<xs:complexType name="ActionPeople">
+		<xs:annotation>
+			<xs:documentation>Affiliates people with actions and describes thier role in the action.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="actionid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier of an action.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="affiliationid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier of a person</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isactionlead" type="xs:boolean" form="qualified" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Indicator of whether the affiliated person was the lead for the action</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="roleid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for a role played by a person in performing an action</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Actions" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Affiliations" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Roles" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Actions" type="Actions"/>
+	<xs:complexType name="Actions">
+		<xs:annotation>
+			<xs:documentation>Describes actions (e.g., observation, sample collection, sample analysis, field visits, field activities, etc.)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="actiontypecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV term describing the type of action (e.g., observation, sample collection, sample analysis)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="begindatetime" type="xs:dateTime" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date/time at which the action began</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="begindatetimeutcoffset" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The UTCOffset for the BeginDateTime</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="enddatetime" type="xs:dateTime" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date/time at which the action ended</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="enddatetimeutcoffset" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The UTCOffset of for the EndDateTime</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="methodid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the method used to complete the action</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="samplingfeatureid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the SamplingFeature on which or at which the action was completed</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="equipmentid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for a piece of equipment that was used to complete the action</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="directiveid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the directive under which the action was completed</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actionnotes" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text notes that accompany the action</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parentactionid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of the action that is the parent of this action</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Actions" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Directives" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Methods" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="SamplingFeatures" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Equipment" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="actionid" use="required" type="xs:int" form="unqualified">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Affiliations" type="Affiliations"/>
+	<xs:complexType name="Affiliations">
+		<xs:annotation>
+			<xs:documentation>Describes affiliations of people with organizations.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="personid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifer for a person</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="organizationid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreigh key identifier for an organization</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isprimaryorganizationcontact" type="xs:boolean" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Boolean indication of whether the person is the organizations primary contact person</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="affiliationstartdate" type="xs:date" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date on which the person became affiliated with the organization</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="affiliationenddate" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date on which the person's affiliation with the organization ended</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="primaryphone" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The primary phone number of the person</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="primaryemail" type="xs:string" form="qualified" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The primary email address of the person</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="primaryaddress" type="xs:string" form="qualified" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The primary mailing address of the person, including street, city, state, zip, and country</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="personlink" type="xs:string" form="qualified" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A URL for the website for a person</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Organizations" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="People" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="affiliationid" use="optional" type="xs:int" form="unqualified">
+			<xs:annotation>
+				<xs:documentation>Primay key</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="DataSets" type="DataSets"/>
+	<xs:complexType name="DataSets">
+		<xs:annotation>
+			<xs:documentation>Describes groupings of observation results that can be considered "datasets"</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="datasettypecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV term(s) describing the Topic Category</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="datasetcode" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A short text code identifying the dataset</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="datasettitle" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A text title for the dataset</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="datasetabstract" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A text abstract describing the dataset</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="datasetcitation" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text citation for Dataset itself</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="datasetid" use="optional" type="xs:int" form="qualified">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="DataSetsResults" type="DataSetsResults"/>
+	<xs:complexType name="DataSetsResults">
+		<xs:annotation>
+			<xs:documentation>Lists the Results that are grouped into a DataSet</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="datasetid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier of the DataSet</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resultid" type="xs:integer" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier of the Result</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="DataSets" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Results" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Directives" type="Directives"/>
+	<xs:complexType name="Directives">
+		<xs:annotation>
+			<xs:documentation>Describes the directive under which actions are made.  Directives can be projects, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="directivedescription" type="xs:string" form="unqualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text description of the directive under which the action was taken.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="directiveid" use="required" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Unique identifier.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Methods" type="Methods"/>
+	<xs:complexType name="Methods">
+		<xs:annotation>
+			<xs:documentation>Describes methods used to perform actions recorded in ODM (e.g., observation methods, sample analysis methods, sample preparation methods, etc.)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="methodtypecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV term describing the type of method (e.g., sample collection, laboratory analytical, field, sample prepratation, etc.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="methodcode" type="xs:string" form="unqualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A text code identifiying the method (e.g., EPA 650.2)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="methodname" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Full text name of the method</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="methoddescription" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Full text description of the method</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="methodlink" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A URL to a full description of the method</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="organizationid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the Organization with which the method is affiliated</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Organizations" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="methodid" use="required" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Organizations" type="Organizations"/>
+	<xs:complexType name="Organizations">
+		<xs:annotation>
+			<xs:documentation>Describes organizations - as in research groups, companies, universities, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="organizationtypecv" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV term defining the type of organization (e.g., government agency, university, etc.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="organizationcode" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A text code identifying the Organization (e.g., USGS)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="organizationname" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The full text name of the organization</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="organizationdescription" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A text description of the organization</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="organizationlink" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A URL for the organization's website</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parentorganizationid" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key of the parent organization of the current organization</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Organizations" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="organizationid" use="required" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="People" type="People"/>
+	<xs:complexType name="People">
+		<xs:annotation>
+			<xs:documentation>Describes people.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="personfirstname" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>First name of the person</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="personmiddlename" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Middle name of the person</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="personlastname" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Last name of the person</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="personid" use="optional" type="xs:int" form="qualified">
+			<xs:annotation>
+				<xs:documentation>Primary Key</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="QualityControlLevels" type="QualityControlLevels"/>
+	<xs:complexType name="QualityControlLevels">
+		<xs:annotation>
+			<xs:documentation>Describes the quality control level of Results</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="definition" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text defintion of the quality control level</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="explanation" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text explanation of the quality control level</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="qualitycontrollevelcode" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text code identifying the quality control level</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="qualitycontrollevelid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="RelatedResults" type="RelatedResults"/>
+	<xs:complexType name="RelatedResults">
+		<xs:annotation>
+			<xs:documentation>Describes Results that are related to one another</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="resultid" type="xs:integer" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier of a Result</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="relatedresultid" type="xs:integer" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key idntifier for a Result that is related to the Result given in ResultID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="relationshiprole" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text description of the relationship shared by two results</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Results" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Results" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Results" type="Results"/>
+	<xs:complexType name="Results">
+		<xs:annotation>
+			<xs:documentation>Describes the results of observation actions (e.g., groups of one or more numeric data values that result from an observation action)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="resulttypecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV term describing the result type (e.g., time series, measurement, etc.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actionid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the observation action that created the result</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="variableid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the Variable of the result</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="unitsid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the Units of the result</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="qualitycontrollevelid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the QualityControlLevel of the result</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resultdatetime" type="xs:dateTime" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date and time at which the result became available (could be used as analysis time for samples)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resultdatetimeutcoffset" type="xs:integer" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>UTDCOffset of ResultDateTime</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validdatetime" type="xs:dateTime" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date and time for which the result is valid (e.g., for a forecast result).  Should probably be expressed as a duration</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validdatetimeutcoffset" type="xs:integer" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>UTCOffset of ValidDateTime</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="statuscv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Status of the result (e.g., finished, ongoing, etc.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sampledmediumcv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV term defining the environmental medium that the result represents (e.g., air, soil, water)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="valuecount" type="xs:integer" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Number of data values contained within the result</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="intendedobservationspacing" type="xs:duration" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Intended temporal spacing of the observations in the result</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Actions" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="QualityControlLevels" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Units" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Variables" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="resultid" use="required" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Roles" type="Roles"/>
+	<xs:complexType name="Roles">
+		<xs:annotation>
+			<xs:documentation>Describes roles that can be taken by people in performing actions (e.g, the person who created the observation).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="roledescription" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text description of the role played by an affiliated person</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="roleid" use="optional" type="xs:int" form="qualified">
+			<xs:annotation>
+				<xs:documentation>Primary key</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="SamplingFeatures" type="SamplingFeatures"/>
+	<xs:complexType name="SamplingFeatures">
+		<xs:annotation>
+			<xs:documentation>Describes the sampling features on which observations are made.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="samplingfeaturetypecv" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV term descripting the type of sampling feature.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="spatialreferenceid" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier of the Spatial Reference System for the feature geometry.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="AbstractFeature" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Actual geometry of the feature. Can be Point, Curve (profile, trajectory, etc), Surface (flat polygons, etc), Solid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="SpatialReferences" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="samplingfeatureid" use="required" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Primary key.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Units" type="Units"/>
+	<xs:complexType name="Units">
+		<xs:annotation>
+			<xs:documentation>Describes units of measure for varibles and time</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="unitsabbreviation" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text abbreviation for the unit</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="unitsname" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text name for the unit</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="unitstypecv" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV term that defines the unit type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="unitsid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Variables" type="Variables"/>
+	<xs:complexType name="Variables">
+		<xs:sequence>
+			<xs:element name="datatypecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV term defining the data type for the variable</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nodatavalue" type="xs:float" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>No data value for the variable</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="speciationcv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV term defining the spciation of the variable</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="valuetypecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV term defining the value type for the variable</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="variablecode" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unique text code for the variable</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="variabledefinition" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text definition of the variable</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="variablenamecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV term for the variable name</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="variabletypecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV term defining the variable type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="variableid" use="required" type="xs:int" form="qualified">
+			<xs:annotation>
+				<xs:documentation>Primay key</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

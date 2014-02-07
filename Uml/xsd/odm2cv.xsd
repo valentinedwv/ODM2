@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="uri:odm2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="uri:odm2" xmlns:odm2="uri:odm2">
+	<xs:element name="CVTerms" type="CVTerms"/>
+	<xs:complexType name="CVTerms">
+		<xs:annotation>
+			<xs:documentation>Table containing terms used in the controlled vocabularies of ODM2.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Definition of term</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name of the ODM controlled vocabulary to which the term belongs</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name and/or description of the source vocabulary from which the term was derived</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Controlled vocabulary term</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="termid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Primary key</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

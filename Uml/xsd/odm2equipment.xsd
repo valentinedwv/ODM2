@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="odm2samplingfeatures.xsd"/>
+	<xs:include schemaLocation="odm2core.xsd"/>
+	<xs:element name="CalibrationAction_Standards" type="CalibrationAction_Standards"/>
+	<xs:complexType name="CalibrationAction_Standards">
+		<xs:annotation>
+			<xs:documentation>Links calibration standards to instrument calibration actions</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="CalibrationActions" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="CalibrationStandards" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CalibrationActions" type="CalibrationActions"/>
+	<xs:complexType name="CalibrationActions">
+		<xs:annotation>
+			<xs:documentation>Describes equipment calibration actions</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Actions" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="ConfigurationActions" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="calibrationactionid" use="optional" type="xs:int"/>
+	</xs:complexType>
+	<xs:element name="CalibrationEquations" type="CalibrationEquations"/>
+	<xs:complexType name="CalibrationEquations">
+		<xs:annotation>
+			<xs:documentation>Describes equations used to calibrate pieces of equipment</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="float" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="float" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="float" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="float" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="CalibrationActions" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="InstrumentOutputVariables" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CalibrationStandards" type="CalibrationStandards"/>
+	<xs:complexType name="CalibrationStandards">
+		<xs:annotation>
+			<xs:documentation>Describes calibration standards</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="datetime" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="datetime" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Organizations" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Specimens" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="calibrationstandardid" use="optional" type="xs:int"/>
+	</xs:complexType>
+	<xs:element name="CalibrationStandardValues" type="CalibrationStandardValues"/>
+	<xs:complexType name="CalibrationStandardValues">
+		<xs:annotation>
+			<xs:documentation>Describes calibration standard values</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifer for the Calibration Standard for which the Calibration Standard Value applies</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="float" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Numeric value of the calibration standard</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier fro the Units of the calibration standard</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the Variable that describes the Calibration Standard Value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Units" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Variables" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="CalibrationStandards" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="calibrationstandardvalueid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="ConfigurationActions" type="ConfigurationActions"/>
+	<xs:complexType name="ConfigurationActions">
+		<xs:annotation>
+			<xs:documentation>Describes equipment configuration actions</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier of the Action that is the configuration action</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>File path to a file containing information about the configuration</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Actions" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="configurationactionid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Equipment" type="Equipment"/>
+	<xs:complexType name="Equipment">
+		<xs:annotation>
+			<xs:documentation>Descriptions of specific pieces of equipment.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="EquipmentModels">
+				<xs:sequence>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A text code that identifies the piece of equipment</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Owner's inventory number for the specific piece of equipment</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A text name for the piece of equipment</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Text notes about the specific piece of equipment</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Foreign key identifer for the person that owns the piece of equipment</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A file name, path, or URL to a photo of the specific piece of equipment</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="datetime" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Date that the piece of equipment was purchased</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A text string identifying the purchase order used to purchase the piece of equipment</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Manufacturer's serial number for the specific piece of equipment</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>CV term describing the equipment type (e.g., sensor, datalogger, solar panel, etc.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Foreign key identifier for the vendor organization for the piece of equipment</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Foreign key identifier for the model of the equipment</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Unique identifier for the piece of equipment that is the parent of the current piece of equipment</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="Organizations" minOccurs="1" maxOccurs="1"/>
+					<xs:element ref="People" minOccurs="1" maxOccurs="1"/>
+					<xs:element ref="Equipment" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="equipmentid" use="optional" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>Unique identifier</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="EquipmentModels" type="EquipmentModels"/>
+	<xs:complexType name="EquipmentModels">
+		<xs:annotation>
+			<xs:documentation>Describes models of sensors, loggers, and related equipment used in making observations.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="boolean" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A boolean indication of whether the equipment is a sensor/instrument used to make observations</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text description of the equipment model</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unique identifier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A URL to a website having a description of the equipment model</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier of the model manufacturer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text name of the equipment model</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text notes that go with the equipment model</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A part number for the equipment model</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>File name, path, or URL to a specifications file for the equipment</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Organizations" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="InstrumentOutputVariables" type="InstrumentOutputVariables"/>
+	<xs:complexType name="InstrumentOutputVariables">
+		<xs:annotation>
+			<xs:documentation>Describes the variables output by a sensor/instrument</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the configuration action that created the instrument output variable</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Header label of the datalogger file output column</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the units of the instrument output variable</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier to the variable that is the instrument output variable</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Units" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Variables" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="ConfigurationActions" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="instrumentoutputvariableid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="MaintenenceActions" type="MaintenenceActions"/>
+	<xs:complexType name="MaintenenceActions">
+		<xs:annotation>
+			<xs:documentation>Describes equipment maintenance actions</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the Action that is the Maintenance Action</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A text code assigned by the factory that identifies the service</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="boolean" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A boolean indicator of whether the maintenance action is a factory service</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Actions" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="maintenanceactionid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

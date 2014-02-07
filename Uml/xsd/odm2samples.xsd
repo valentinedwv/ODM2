@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="odm2equipment.xsd"/>
+	<xs:include schemaLocation="odm2core.xsd"/>
+	<xs:element name="AnalysisBatchActions" type="AnalysisBatchActions"/>
+	<xs:complexType name="AnalysisBatchActions">
+		<xs:annotation>
+			<xs:documentation>Describes sample analysis batch events</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Actions" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="CalibrationActions" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="ConfigurationActions" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="analysisbacthactionid" use="optional" type="xs:int"/>
+	</xs:complexType>
+	<xs:element name="BatchSampleLines" type="BatchSampleLines"/>
+	<xs:complexType name="BatchSampleLines">
+		<xs:annotation>
+			<xs:documentation>Describes sample analysis batch sample lines</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="AnalysisBatchActions" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="batchsamplelineid" use="optional" type="xs:int"/>
+	</xs:complexType>
+	<xs:element name="SamplePreparationAction" type="SamplePreparationAction"/>
+	<xs:complexType name="SamplePreparationAction">
+		<xs:annotation>
+			<xs:documentation>Describes sample preparation events</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Actions" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="samplepreparationactionid" use="optional" type="xs:int"/>
+	</xs:complexType>
+</xs:schema>

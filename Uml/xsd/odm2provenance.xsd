@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="odm2core.xsd"/>
+	<xs:element name="InputResults" type="InputResults"/>
+	<xs:complexType name="InputResults">
+		<xs:annotation>
+			<xs:documentation>Defines the input results that were used to create a derived result</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the provenance record describing the derived result</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Results" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="ResultProvenance" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="inputresultid" use="optional" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Foreign key indentifier for the input result from which the derived result was created</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="ResultProvenance" type="ResultProvenance"/>
+	<xs:complexType name="ResultProvenance">
+		<xs:annotation>
+			<xs:documentation>Describes the provenance of a derived result</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the person that created the derived dataset</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="datetime" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date/time at which the provenance record was created</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>UTCOffset of ProcessedDateTime</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the method used to generate the derived result</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier of the derived result for wich the provenance is being tracked</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Methods" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Results" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="resultprovenanceid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="ResultVersions" type="ResultVersions"/>
+	<xs:complexType name="ResultVersions">
+		<xs:annotation>
+			<xs:documentation>Describes versions of results</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier of the result version</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text code identifying the version</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text definition of the version</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A text explanation of the version</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the Result that the current Result is a version of</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Results" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Results" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="resultversionid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

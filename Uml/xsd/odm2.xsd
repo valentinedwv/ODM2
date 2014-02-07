@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://schemas.cuahsi.org/odm2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:odm2="http://schemas.cuahsi.org/odm2" xmlns:gml="http://www.opengis.net/gml"/>

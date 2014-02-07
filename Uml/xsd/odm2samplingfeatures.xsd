@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:odm2="uri:odm2"
+	
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import namespace="uri:odm2" schemaLocation="odm2core.xsd"/>
+	<xs:element name="FeatureParents" type="FeatureParents"/>
+	<xs:complexType name="FeatureParents">
+		<xs:annotation>
+			<xs:documentation>Describes parrent/child relationships among Sampling Features</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="parentfeatureid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier of a Sampling Feature that is the parent of the current Sampling Feature</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="relationshiptypecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A text description of the type of relationship among the Sampling Features</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="samplingfeatureid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foregn key identifier of a Sampling Feature</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="odm2:SamplingFeatures" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="odm2:SamplingFeatures" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="SpatialOffsets" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="spatialoffsetid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Foreign key identifier of a spatial offset from the feature parent</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Sites" type="Sites"/>
+	<xs:complexType name="Sites">
+		<xs:annotation>
+			<xs:documentation>Describes sampling features that are point sites</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="elevation_m" type="xs:float" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The elevation of the site in meters above some vertical datum</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="latitude" type="xs:float" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Latitude of the site</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="latlongdatumid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the Spatial Reference System that describes the latitude and longitude coordinates</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="longitude" type="xs:float" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Longitude of the site</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="samplingfeatureid" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier of the Sampling Feature that is the Site</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sitecode" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A text code that identifies the site (e.g., a USGS Gage number)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sitename" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A text name for the site</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sitetypecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A CV term describing the site type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verticaldatumcv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A CV term describing the vertical datum to which the site elevation is referenced</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="odm2:SamplingFeatures" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="siteid" use="optional" type="xs:int" form="qualified">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="SpatialOffsets" type="SpatialOffsets"/>
+	<xs:complexType name="SpatialOffsets">
+		<xs:annotation>
+			<xs:documentation>An explicit spatial relationship between a sampling feature and it's parent.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="offset1unitid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="offset1value" type="xs:float" form="qualified" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="offset2unitid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="offset2value" type="xs:float" form="qualified" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="offset3unitid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="offset3value" type="xs:float" form="qualified" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="spatialoffsettypecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="spatialoffsetid" use="required" type="xs:int" form="unqualified"/>
+	</xs:complexType>
+	<xs:element name="SpatialReferences" type="SpatialReferences"/>
+	<xs:complexType name="SpatialReferences">
+		<xs:annotation>
+			<xs:documentation>Describes spatial reference systems used to reference the coordinates for sites</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="notes" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text notes describing the spatial reference system</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="srsid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>SRS code for the spatial reference system</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="srsname" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text name of the spatial reference system</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="spatialreferenceid" use="required" type="xs:int" form="qualified">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Specimens" type="Specimens"/>
+	<xs:complexType name="Specimens">
+		<xs:annotation>
+			<xs:documentation>Equivalent to O&amp;M Sampling Feature Type "Specimen".  Describes physical samples or specimens.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="isfieldspecimen" type="xs:boolean" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A boolean indicating whether the speciment was collected in the field</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="samplingfeatureid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the Sampling Feature that is the specimen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="specimenmediumcv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A CV term defining the medium of the specimen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="specimentypecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A CV term defining the type of speciment (e.g., aquatic sample, core, etc.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="odm2:SamplingFeatures" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="specimenid" use="required" type="xs:int" form="unqualified">
+			<xs:annotation>
+				<xs:documentation>Unique identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

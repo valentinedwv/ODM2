@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="odm2results.xsd"/>
+	<xs:include schemaLocation="odm2core.xsd"/>
+	<xs:element name="Annotations" type="Annotations"/>
+	<xs:complexType name="Annotations">
+		<xs:annotation>
+			<xs:documentation>Contains text annotations added to various objects within ODM.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="annotationcode" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A short text code that identifies the annotation (e.g., "A' for "Approved data").</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="annotationdatetime" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date and time at which the annotation was created.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="annotationtext" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Full text of the annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="annotationtypecv" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV for types of annotations.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="annotationutcoffset" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>UTCOffset for the annotation creation date/time.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="annotatorid" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foregn key identifier for the person that created the annotation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="People" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="annotationid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Primary key.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="MethodAnnotations" type="MethodAnnotations"/>
+	<xs:complexType name="MethodAnnotations">
+		<xs:complexContent>
+			<xs:extension base="Annotations">
+				<xs:sequence>
+					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Foreign key of the method being annotated</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="Methods" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="annotationid" use="optional" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>Foreign key of the annotation added to the method</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ResultAnnotations" type="ResultAnnotations"/>
+	<xs:complexType name="ResultAnnotations">
+		<xs:complexContent>
+			<xs:extension base="Annotations">
+				<xs:sequence>
+					<xs:element ref="datetime" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Beginning date/time of the annotation</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="datetime" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Ending date/time of the annotation</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="resultid" type="xs:int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Foreign key of the result being annotated</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="Results" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="annotationid" use="optional" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>Foreign key of the annotation added to the result</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ResultValueAnnotations" type="ResultValueAnnotations"/>
+	<xs:complexType name="ResultValueAnnotations">
+		<xs:complexContent>
+			<xs:extension base="Annotations">
+				<xs:sequence>
+					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Foreign key of the result value being annotrated</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ResultValues" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="annotationid" use="optional" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>Foreign key of the annotation applied to the result value</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="VariableAnnotations" type="VariableAnnotations"/>
+	<xs:complexType name="VariableAnnotations">
+		<xs:complexContent>
+			<xs:extension base="Annotations">
+				<xs:sequence>
+					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Foreign key of the variable being annotated</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="Variables" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="annotationid" use="optional" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>Foreign key of the annotation added to the variable</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

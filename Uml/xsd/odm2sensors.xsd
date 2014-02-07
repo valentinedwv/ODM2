@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="odm2equipment.xsd"/>
+	<xs:include schemaLocation="odm2core.xsd"/>
+	<xs:element name="DataLoggerFiles" type="DataLoggerFiles"/>
+	<xs:complexType name="DataLoggerFiles">
+		<xs:annotation>
+			<xs:documentation>Destibes datalogger files created by a deployment action</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text description of the datalogger file</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>File path to the datalogger file</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the deployment action that created the datalogger file</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="DeploymentActions" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="dataloggerfileid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Unique identifier for the datalogger file</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="DeploymentActions" type="DeploymentActions"/>
+	<xs:complexType name="DeploymentActions">
+		<xs:annotation>
+			<xs:documentation>Describes actions that are deployment events</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the calibration action associated with the deployment</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the configuration action associated with the deployment</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unique identifier for the deployment </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A text description of the deployment</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>File path of of a file containing a schematic of the deployment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>CV term that describes the type of the deployment</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key idenfier for the SpatialOffset of the deployment</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Actions" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="CalibrationActions" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="ConfigurationActions" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="actionid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Foreign key identifer for the Action that is the deployment</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="deploymentnotes" use="optional" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Text notes describing the deployment</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Photos" type="Photos"/>
+	<xs:complexType name="Photos">
+		<xs:annotation>
+			<xs:documentation>Describes photographs that were collected as part of an action (e.g., a site visit)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the Action with which the photo is associated</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text description of the photograph</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>File name, path, or URL of the photo file</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Actions" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="photoid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Unique identifier for the photograph</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="SiteVisitActions" type="SiteVisitActions"/>
+	<xs:complexType name="SiteVisitActions">
+		<xs:annotation>
+			<xs:documentation>Describes site visit event activities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text description of the environmental conditions at the site when it was visited</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unique identifier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Actions" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="actionid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Foreign key identifier for the Action that is the Site Visit</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

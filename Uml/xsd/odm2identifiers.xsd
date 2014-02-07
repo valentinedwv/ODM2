@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="odm2core.xsd"/>
+	<xs:element name="DataSetExternalIdentifers" type="DataSetExternalIdentifers"/>
+	<xs:complexType name="DataSetExternalIdentifers">
+		<xs:complexContent>
+			<xs:extension base="ExternalIdentifierSystems">
+				<xs:sequence>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A resolvable, globally unique ID, like DOI; could be URN</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Uniform Resource Name (URN) that can be resolved by the ExternalIdentifierSysem</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Foreign Key to DataSets</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="DataSets" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="externalidentifersystemid" use="optional" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>Foreign Key to ExternalIdentifierSystems</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ExternalIdentifierSystems" type="ExternalIdentifierSystems"/>
+	<xs:complexType name="ExternalIdentifierSystems">
+		<xs:annotation>
+			<xs:documentation>A single table for connecting various primary keys with points to outside systems.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Description of identifier system.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the identifier system used (i.e. IGSN, SWRC Sample Number, etc.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Universal Resource Locator (URL) for resolution/translation of an identifier system's URNs (i.e. http://dx.doi.org/ is the resolver URL for doi:10.1002/2013GL057450)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign Key identifer for the organization overseeing or affiliated with the identifier system</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Organizations" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="externalidentifiersystemid" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Primary key identifier</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="MethodExternalIdentifiers" type="MethodExternalIdentifiers"/>
+	<xs:complexType name="MethodExternalIdentifiers">
+		<xs:complexContent>
+			<xs:extension base="ExternalIdentifierSystems">
+				<xs:sequence>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A resolvable, globally unique ID, such as a NEMI method number; could be URN</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Uniform Resource Name (URN) that can be resolved by the ExternalIdentifierSysem</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Foreign Key to SamplingFeatures</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="Methods" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="externalidentifiersystemid" use="optional" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>Foreign Key to ExternalIdentifierSystems</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="PersonExternalIdentifiers" type="PersonExternalIdentifiers"/>
+	<xs:complexType name="PersonExternalIdentifiers">
+		<xs:annotation>
+			<xs:documentation>Cross reference "linking" table to allow many to many </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ExternalIdentifierSystems">
+				<xs:sequence>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Uniform Resource Name (URN) is a persistent, location-independent identifier for an online resource that follows the following scheme: i.e. urn:ioos:station:wmo:41001, urn:ioos:sensor:wmo:41001:baro1, urn:igsn:specimen:stroud:14567, urn:odm2:staff:stroud:aauf23</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A resolvable, globally unique ID, such as a social security number; could be URN</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Foreign Key to People table</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="People" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="externalidentifiersystemid" use="optional" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>Foreign Key to ExternalIdentifierSystems</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="SamplingFeatureExternalIdentifiers" type="SamplingFeatureExternalIdentifiers"/>
+	<xs:complexType name="SamplingFeatureExternalIdentifiers">
+		<xs:complexContent>
+			<xs:extension base="ExternalIdentifierSystems">
+				<xs:sequence>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Uniform Resource Name (URN) that can be resolved by the ExternalIdentifierSysem</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A resolvable, globally unique ID, such as an IGSN; could be URN</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Foreign Key to SamplingFeatures</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="SamplingFeatures" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="externalidentifiersystemid" use="optional" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>Foreign Key to ExternalIdentifierSystems</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="VariableExternalIdentifiers" type="VariableExternalIdentifiers"/>
+	<xs:complexType name="VariableExternalIdentifiers">
+		<xs:complexContent>
+			<xs:extension base="ExternalIdentifierSystems">
+				<xs:sequence>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A resolvable, globally unique ID; could be URN</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Uniform Resource Name (URN) that can be resolved by the ExternalIdentifierSysem</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Foreign Key to Variables</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="Variables" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="externalidentifiersystemid" use="optional" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>Foreign Key to ExternalIdentifierSystems</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>
