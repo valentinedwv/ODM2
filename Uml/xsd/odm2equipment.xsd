@@ -8,8 +8,8 @@
 			<xs:documentation>Links calibration standards to instrument calibration actions</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="calibrationactionid" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="calibrationstandardid" type="xs:int" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="CalibrationActions" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="CalibrationStandards" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
@@ -20,10 +20,9 @@
 			<xs:documentation>Describes equipment calibration actions</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="odm2:Actions" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="actionid" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="calibrationfilepath" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="configurationactionid" type="xs:int" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="ConfigurationActions" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 		<xs:attribute name="calibrationactionid" use="optional" type="xs:int"/>
@@ -34,17 +33,17 @@
 			<xs:documentation>Describes equations used to calibrate pieces of equipment</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="float" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="float" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="float" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="float" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="calibrationactionid" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="instrumentoutputvariableid" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="outputvariablecoefficient1" type="xs:float" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="outputvariablecoefficient2" type="xs:float" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="outputvariablecoefficient3" type="xs:float" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="outputvariableequation" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="outputvariableuncertainty" type="xs:float" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="CalibrationActions" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="InstrumentOutputVariables" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
+		<xs:attribute name="calibrationequationid" use="optional" type="xs:int"/>
 	</xs:complexType>
 	<xs:element name="CalibrationStandards" type="CalibrationStandards"/>
 	<xs:complexType name="CalibrationStandards">
@@ -52,13 +51,13 @@
 			<xs:documentation>Describes calibration standards</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="datetime" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="datetime" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="calibrationstandardcertificatelink" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="calibrationstandardexpirationdate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="calibrationstandardlotcode" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="calibrationstandardpurchasedate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="calibrationstandardtypecv" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="calibrationstandardvendorid" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="specimenid" type="xs:int" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="odm2:Organizations" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="Specimens" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
@@ -70,23 +69,23 @@
 			<xs:documentation>Describes calibration standard values</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+			<xs:element name="calibrationstandardid" type="xs:int" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Foreign key identifer for the Calibration Standard for which the Calibration Standard Value applies</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="float" minOccurs="1" maxOccurs="1">
+			<xs:element name="calibrationstandardvalue" type="xs:float" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Numeric value of the calibration standard</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1"/>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+			<xs:element name="source" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="unitsid" type="xs:int" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Foreign key identifier fro the Units of the calibration standard</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+			<xs:element name="variableid" type="xs:int" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Foreign key identifier for the Variable that describes the Calibration Standard Value</xs:documentation>
 				</xs:annotation>
@@ -107,17 +106,11 @@
 			<xs:documentation>Describes equipment configuration actions</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Foreign key identifier of the Action that is the configuration action</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="configurationfilepath" type="xs:string" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>File path to a file containing information about the configuration</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="odm2:Actions" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 		<xs:attribute name="configurationactionid" use="optional" type="xs:int">
 			<xs:annotation>
@@ -270,22 +263,22 @@
 			<xs:documentation>Describes the variables output by a sensor/instrument</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+			<xs:element name="configurationactionid" type="xs:int" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Foreign key identifier for the configuration action that created the instrument output variable</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="outputfilecolumnlabel" type="xs:string" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Header label of the datalogger file output column</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+			<xs:element name="unitsid" type="xs:int" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Foreign key identifier for the units of the instrument output variable</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+			<xs:element name="variableid" type="xs:int" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Foreign key identifier to the variable that is the instrument output variable</xs:documentation>
 				</xs:annotation>
@@ -306,22 +299,16 @@
 			<xs:documentation>Describes equipment maintenance actions</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Foreign key identifier for the Action that is the Maintenance Action</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="factoryservicecode" type="xs:string" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>A text code assigned by the factory that identifies the service</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="boolean" minOccurs="1" maxOccurs="1">
+			<xs:element name="isfactoryservice" type="xs:boolean" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>A boolean indicator of whether the maintenance action is a factory service</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="odm2:Actions" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 		<xs:attribute name="maintenanceactionid" use="optional" type="xs:int">
 			<xs:annotation>

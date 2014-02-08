@@ -6,6 +6,7 @@
     </meta>
     <projectTree name="odm2.xpr">
         <folder path="examplexml/"/>
+        <folder path="test/"/>
         <folder path="xsd/"/>
     </projectTree>
 </project>

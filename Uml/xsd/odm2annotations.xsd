@@ -1,139 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:include schemaLocation="odm2results.xsd"/>
-	<xs:include schemaLocation="odm2core.xsd"/>
-	<xs:element name="Annotations" type="Annotations"/>
-	<xs:complexType name="Annotations">
+	<xs:include/>
+	<xs:element name="FeatureParents" type="FeatureParents"/>
+	<xs:complexType name="FeatureParents">
 		<xs:annotation>
-			<xs:documentation>Contains text annotations added to various objects within ODM.</xs:documentation>
+			<xs:documentation>Describes parrent/child relationships among Sampling Features</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="annotationcode" type="xs:string" minOccurs="1" maxOccurs="1">
+			<xs:element name="SamplingFeatureID" type="xs:int" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
-					<xs:documentation>A short text code that identifies the annotation (e.g., "A' for "Approved data").</xs:documentation>
+					<xs:documentation>Foregn key identifier of a Sampling Feature</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="annotationdatetime" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+			<xs:element name="ParentFeatureID" type="xs:int" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
-					<xs:documentation>Date and time at which the annotation was created.</xs:documentation>
+					<xs:documentation>Foreign key identifier of a Sampling Feature that is the parent of the current Sampling Feature</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="annotationtext" type="xs:string" minOccurs="1" maxOccurs="1">
+			<xs:element name="RelationshipTypeCV" type="xs:string" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
-					<xs:documentation>Full text of the annotation.</xs:documentation>
+					<xs:documentation>A text description of the type of relationship among the Sampling Features</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="annotationtypecv" type="xs:int" minOccurs="1" maxOccurs="1">
+			<xs:element name="SpatialOffsetID" type="xs:int" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
-					<xs:documentation>CV for types of annotations.</xs:documentation>
+					<xs:documentation>Foreign key identifier of a spatial offset from the feature parent</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="annotationutcoffset" type="xs:int" minOccurs="1" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>UTCOffset for the annotation creation date/time.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="annotatorid" type="xs:int" minOccurs="1" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Foregn key identifier for the person that created the annotation</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element ref="People" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pkSamplingFeatures" type="SamplingFeatures" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pkSamplingFeatures" type="SamplingFeatures" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pkSpatialOffsets" type="SpatialOffsets" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
-		<xs:attribute name="annotationid" use="optional" type="xs:int">
-			<xs:annotation>
-				<xs:documentation>Primary key.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
 	</xs:complexType>
-	<xs:element name="MethodAnnotations" type="MethodAnnotations"/>
-	<xs:complexType name="MethodAnnotations">
-		<xs:complexContent>
-			<xs:extension base="Annotations">
-				<xs:sequence>
-					<xs:element ref="int" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Foreign key of the method being annotated</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element ref="Methods" minOccurs="1" maxOccurs="1"/>
-				</xs:sequence>
-				<xs:attribute name="annotationid" use="optional" type="xs:int">
-					<xs:annotation>
-						<xs:documentation>Foreign key of the annotation added to the method</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-			</xs:extension>
-		</xs:complexContent>
+	<xs:element name="Sites" type="Sites"/>
+	<xs:complexType name="Sites">
+		<xs:annotation>
+			<xs:documentation>Describes sampling features that are point sites</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SiteID" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unique identifier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SamplingFeatureID" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier of the Sampling Feature that is the Site</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SiteCode" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A text code that identifies the site (e.g., a USGS Gage number)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SiteName" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A text name for the site</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Latitude" type="xs:float" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Latitude of the site</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Longitude" type="xs:float" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Longitude of the site</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LatLongDatumID" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the Spatial Reference System that describes the latitude and longitude coordinates</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Elevation_m" type="xs:float" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The elevation of the site in meters above some vertical datum</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VerticalDatumCV" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A CV term describing the vertical datum to which the site elevation is referenced</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SiteTypeCV" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A CV term describing the site type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pkSamplingFeatures" type="SamplingFeatures" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
 	</xs:complexType>
-	<xs:element name="ResultAnnotations" type="ResultAnnotations"/>
-	<xs:complexType name="ResultAnnotations">
-		<xs:complexContent>
-			<xs:extension base="Annotations">
-				<xs:sequence>
-					<xs:element ref="datetime" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Beginning date/time of the annotation</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element ref="datetime" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Ending date/time of the annotation</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="resultid" type="xs:int" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Foreign key of the result being annotated</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element ref="Results" minOccurs="1" maxOccurs="1"/>
-				</xs:sequence>
-				<xs:attribute name="annotationid" use="optional" type="xs:int">
-					<xs:annotation>
-						<xs:documentation>Foreign key of the annotation added to the result</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-			</xs:extension>
-		</xs:complexContent>
+	<xs:element name="SpatialOffsets" type="SpatialOffsets"/>
+	<xs:complexType name="SpatialOffsets">
+		<xs:annotation>
+			<xs:documentation>An explicit spatial relationship between a sampling feature and it's parent.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SpatialOffsetID" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SpatialOffsetTypeCV" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Offset1Value" type="xs:float" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Offset1UnitID" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Offset2Value" type="xs:float" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Offset2UnitID" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Offset3Value" type="xs:float" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Offset3UnitID" type="xs:int" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
 	</xs:complexType>
-	<xs:element name="ResultValueAnnotations" type="ResultValueAnnotations"/>
-	<xs:complexType name="ResultValueAnnotations">
-		<xs:complexContent>
-			<xs:extension base="Annotations">
-				<xs:sequence>
-					<xs:element ref="int" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Foreign key of the result value being annotrated</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element ref="ResultValues" minOccurs="1" maxOccurs="1"/>
-				</xs:sequence>
-				<xs:attribute name="annotationid" use="optional" type="xs:int">
-					<xs:annotation>
-						<xs:documentation>Foreign key of the annotation applied to the result value</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-			</xs:extension>
-		</xs:complexContent>
+	<xs:element name="SpatialReferences" type="SpatialReferences"/>
+	<xs:complexType name="SpatialReferences">
+		<xs:annotation>
+			<xs:documentation>Describes spatial reference systems used to reference the coordinates for sites</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SpatialReferenceID" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unique identifier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SRSID" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>SRS code for the spatial reference system</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SRSName" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text name of the spatial reference system</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Notes" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text notes describing the spatial reference system</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
 	</xs:complexType>
-	<xs:element name="VariableAnnotations" type="VariableAnnotations"/>
-	<xs:complexType name="VariableAnnotations">
-		<xs:complexContent>
-			<xs:extension base="Annotations">
-				<xs:sequence>
-					<xs:element ref="int" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Foreign key of the variable being annotated</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element ref="Variables" minOccurs="1" maxOccurs="1"/>
-				</xs:sequence>
-				<xs:attribute name="annotationid" use="optional" type="xs:int">
-					<xs:annotation>
-						<xs:documentation>Foreign key of the annotation added to the variable</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-			</xs:extension>
-		</xs:complexContent>
+	<xs:element name="Specimens" type="Specimens"/>
+	<xs:complexType name="Specimens">
+		<xs:annotation>
+			<xs:documentation>Equivalent to O&amp;M Sampling Feature Type "Specimen".  Describes physical samples or specimens.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SpecimenID" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unique identifier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SamplingFeatureID" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Foreign key identifier for the Sampling Feature that is the specimen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsFieldSpecimen" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A boolean indicating whether the speciment was collected in the field</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpecimenTypeCV" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A CV term defining the type of speciment (e.g., aquatic sample, core, etc.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpecimenMediumCV" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A CV term defining the medium of the specimen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pkSamplingFeatures" type="SamplingFeatures" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

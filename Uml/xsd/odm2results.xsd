@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:include schemaLocation="odm2core.xsd"/>
+<xs:schema xmlns:odm2="uri:odm2" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import namespace="uri:odm2" schemaLocation="odm2core.xsd"/>
 	<xs:element name="OffsetOrigins" type="OffsetOrigins"/>
 	<xs:complexType name="OffsetOrigins">
 		<xs:sequence>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+			<xs:element name="offsetcoordinateunitsid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Units of X, Y, and Z coordinates</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="offsetorigindescription" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Description of the origin of the coordinate system for the X, Y, and Z coordinates that specify the offset from the sampilng feature.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="Units" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="odm2:Units" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 		<xs:attribute name="offsetoriginid" use="optional" type="xs:int">
 			<xs:annotation>
@@ -28,67 +28,67 @@
 			<xs:documentation>Describes individual data values within a Result</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="aggregationduration" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Description of the time support of the result value</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="censorcodecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>CV term specifying whether the result is censored or not (e.g., below a detection limit)</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="float" minOccurs="1" maxOccurs="1">
+			<xs:element name="datavalue" type="xs:float" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Numeric data value of the result</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="interpolationtypecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>CV term describing the type of aggregation or interpolation that does done over the AggregationDuration</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+			<xs:element name="offsetoriginid" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Foreign key of the offset origin</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="qualitycodecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>CV term specifying the quality of the result value</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+			<xs:element name="resultid" type="xs:integer" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Foreign key identifier of the Result containing the data value</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="datetime" minOccurs="1" maxOccurs="1">
+			<xs:element name="valuedatetime" type="xs:dateTime" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Date/time associated with the Result value</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+			<xs:element name="valuedatetimeutcoffset" type="xs:int" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>UTC offset of the date/time associated with the Result value</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="float" minOccurs="1" maxOccurs="1">
+			<xs:element name="valuexlocation" type="xs:float" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>X coordinate of the value offset with respect to the offset origin</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="float" minOccurs="1" maxOccurs="1">
+			<xs:element name="valueylocation" type="xs:float" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Y coordinate of the value offset with respect to the offset origin</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="float" minOccurs="1" maxOccurs="1">
+			<xs:element name="valuezlocation" type="xs:float" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Z coordinate of the value offset with respect to the offset origin</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="Results" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="odm2:Results" minOccurs="1" maxOccurs="1"/>
 			<xs:element ref="OffsetOrigins" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 		<xs:attribute name="valueid" use="optional" type="xs:integer">

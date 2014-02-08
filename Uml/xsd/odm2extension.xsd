@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:include schemaLocation="odm2core.xsd"/>
+<xs:schema xmlns:odm2="uri:odm2" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import namespace="uri:odm2" schemaLocation="odm2core.xsd"/>
 	<xs:element name="ExtensionProperties" type="ExtensionProperties"/>
 	<xs:complexType name="ExtensionProperties">
 		<xs:annotation>
 			<xs:documentation>Describes extension properties added to objects in an ODM database</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="propertydatatypecv" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>CV term specifying the data type of the property value</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="propertydescription" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Text description of the extension property</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="string" minOccurs="1" maxOccurs="1">
+			<xs:element name="propertyname" type="xs:string" form="qualified" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Text name of the extension property</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="int" minOccurs="1" maxOccurs="1">
+			<xs:element name="propertyunitsid" type="xs:int" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Foreign key identifier for the units of the property value</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="Units" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="odm2:Units" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 		<xs:attribute name="propertyid" use="optional" type="xs:integer">
 			<xs:annotation>
@@ -43,23 +43,18 @@
 		<xs:complexContent>
 			<xs:extension base="ExtensionProperties">
 				<xs:sequence>
-					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+					<xs:element name="methodid" type="xs:int" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Foreign key identifier for the Method</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+					<xs:element name="propertyvalue" type="xs:string" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Text or numeric value of the extension property</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="Methods" minOccurs="1" maxOccurs="1"/>
+					<xs:element ref="odm2:Methods" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
-				<xs:attribute name="propertyid" use="optional" type="xs:integer">
-					<xs:annotation>
-						<xs:documentation>Foreign key identifier for the extension property</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -71,23 +66,18 @@
 		<xs:complexContent>
 			<xs:extension base="ExtensionProperties">
 				<xs:sequence>
-					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+					<xs:element name="propertyvalue" type="xs:string" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Text or numeric value of the extension property</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="integer" minOccurs="1" maxOccurs="1">
+					<xs:element name="resultid" type="xs:integer" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Foreign key identifier for the result to which the extension property applies</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="Results" minOccurs="1" maxOccurs="1"/>
+					<xs:element ref="odm2:Results" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
-				<xs:attribute name="propertyid" use="optional" type="xs:integer">
-					<xs:annotation>
-						<xs:documentation>Foreign key identifier for the extension propery</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -96,23 +86,18 @@
 		<xs:complexContent>
 			<xs:extension base="ExtensionProperties">
 				<xs:sequence>
-					<xs:element ref="string" minOccurs="1" maxOccurs="1">
+					<xs:element name="propertyvalue" type="xs:string" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Text or numeric value of the extension property for the variable</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="int" minOccurs="1" maxOccurs="1">
+					<xs:element name="variableid" type="xs:int" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Foreign key of the variable being extended</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element ref="Variables" minOccurs="1" maxOccurs="1"/>
+					<xs:element ref="odm2:Variables" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
-				<xs:attribute name="propertyid" use="optional" type="xs:integer">
-					<xs:annotation>
-						<xs:documentation>Foreign key of the extension property being applied to the variable</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
